@@ -11,28 +11,38 @@ public interface Advt {
 
     Date getCreationTime();
 
-    String getCity();
-
-    String getCityRegion();
+    Location getLocation();
 
     String getComment();
 
-    String getCurrency();
+    Currency getCurrency();
 
-    float getExchangeRate();
+    Float getExchangeRate();
 
-    long getAmount();
+    Long getAmount();
 
-    BidType getBidType();
+    AdvtType getAdvtType();
 
-    BidStatus getBidStatus();
+    AdvtStatus getAdvtStatus();
 
-    enum BidType {
+    enum AdvtType {
         SELL, BUY
     }
 
-    enum BidStatus {
+    enum AdvtStatus {
         ACTIVE, DONE
+    }
+
+    enum Currency {
+        USD, EUR, RUB, UAH
+    }
+
+    interface Location {
+
+        String getCity();
+
+        String getArea();
+
     }
 
 }
