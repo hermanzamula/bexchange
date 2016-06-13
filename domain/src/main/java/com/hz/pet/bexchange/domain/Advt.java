@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * @author Herman Zamula
  */
-public interface Bid {
+public interface Advt {
 
     User getCreator();
 
