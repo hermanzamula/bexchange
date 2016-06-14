@@ -29,14 +29,6 @@ public class User implements com.hz.pet.bexchange.domain.User, Identifiable<Long
 
     private boolean admin;
 
-    public User() {
-    }
-
-    public User(String phoneNumber, String password) {
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-    }
-
     @Override
     public String getPhoneNumber() {
         return phoneNumber;
@@ -47,15 +39,4 @@ public class User implements com.hz.pet.bexchange.domain.User, Identifiable<Long
         return id;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
 }

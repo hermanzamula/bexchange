@@ -27,6 +27,8 @@ import static com.hz.pet.bexchange.domain.Advt.Currency.values;
 @Component
 public class DemoCreator {
 
+    private final static String ADMIN = "0000000000";
+
     private static final ImmutableSet<String> COMMENTS = ImmutableSet.of(
             "Срочно",
             "Б*я касса горит",
@@ -66,8 +68,15 @@ public class DemoCreator {
 
         Random random = new Random();
 
+        createAdmin();
+
         phoneNumbers.stream()
-                .map(number -> userRepository.save(new User(number, "pwd")))
+                .map(number -> {
+                    final User u = new User();
+                    u.setPassword("pwd");
+                    u.setPhoneNumber(number);
+                    return userRepository.save(u);
+                })
                 .forEach(user -> {
 
                     Advt advt = new Advt();
@@ -88,6 +97,14 @@ public class DemoCreator {
                 });
 
 
+    }
+
+    private User createAdmin() {
+        final User admin = new User();
+        admin.setPassword("pwd");
+        admin.setPhoneNumber(ADMIN);
+        admin.setAdmin(true);
+        return userRepository.save(admin);
     }
 
     private AdvtLocation getAdvtLocation(Random random) {

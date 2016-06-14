@@ -22,7 +22,6 @@ public class BexchangeUserDetailsService implements UserDetailsService {
     @Inject
     private UserRepository userRepository;
 
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
