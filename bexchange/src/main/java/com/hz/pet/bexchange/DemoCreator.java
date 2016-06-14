@@ -71,7 +71,7 @@ public class DemoCreator {
                 .forEach(user -> {
 
                     Advt advt = new Advt();
-                    advt.setAdvtStatus(AdvtStatus.values()[3]);
+                    advt.setAdvtStatus(AdvtStatus.values()[2]);
                     advt.setAdvtType(random.nextBoolean() ? SELL : BUY);
                     advt.setCreationTime(new Date());
                     advt.setCurrency(values()[random.nextInt(4)]);
