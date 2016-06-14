@@ -17,8 +17,8 @@ import javax.validation.constraints.Pattern;
 @Data
 public class User implements com.hz.pet.bexchange.domain.User, Identifiable<Long> {
 
-    @Column(nullable = false)
-    @Pattern(regexp = "^\\\0[0-9]{9}$", message = "Example: 0443335566")
+    @Column(nullable = false, unique = true)
+    @Pattern(regexp = "^[0][0-9]{9}$", message = "Example: 0443335566")
     private String phoneNumber;
 
     @Id

@@ -20,7 +20,8 @@ public class Advt implements com.hz.pet.bexchange.domain.Advt, Identifiable<Long
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
+    @JoinColumn(nullable = false, updatable = false)
     private User creator;
 
     @Column(nullable = false)
