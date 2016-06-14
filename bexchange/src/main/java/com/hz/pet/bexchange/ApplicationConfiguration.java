@@ -1,6 +1,9 @@
 package com.hz.pet.bexchange;
 
 import com.hz.pet.bexchange.web.BexchangeUserDetailsService;
+import com.hz.pet.bexchange.web.RESTAuthenticationEntryPoint;
+import com.hz.pet.bexchange.web.RESTAuthenticationErrorHandler;
+import com.hz.pet.bexchange.web.RESTAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -22,6 +25,12 @@ public class ApplicationConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private BexchangeUserDetailsService userDetailsService;
+    @Autowired
+    private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
+    @Autowired
+    private RESTAuthenticationErrorHandler authenticationErrorHandler;
+    @Autowired
+    private RESTAuthenticationEntryPoint authenticationEntryPoint;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -45,6 +54,13 @@ public class ApplicationConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/users").anonymous()
                 .and()
                 .csrf().disable()
+                .formLogin()
+                .successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationErrorHandler)
+                .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                .and().formLogin()
+                .defaultSuccessUrl("/")
+                .and().logout();
         ;
     }
 
