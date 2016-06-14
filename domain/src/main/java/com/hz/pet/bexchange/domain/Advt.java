@@ -30,7 +30,7 @@ public interface Advt {
     }
 
     enum AdvtStatus {
-        ACTIVE, DONE
+        NEW, PUBLISHED, DONE
     }
 
     enum Currency {

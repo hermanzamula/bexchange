@@ -2,6 +2,7 @@ package com.hz.pet.bexchange;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
+import com.hz.pet.bexchange.domain.Advt.AdvtStatus;
 import com.hz.pet.bexchange.domain.advt.Advt;
 import com.hz.pet.bexchange.domain.advt.AdvtLocation;
 import com.hz.pet.bexchange.domain.advt.AdvtRepository;
@@ -16,8 +17,6 @@ import java.util.stream.Stream;
 
 import static com.google.common.collect.Iterables.get;
 import static com.google.common.collect.Sets.newHashSet;
-import static com.hz.pet.bexchange.domain.Advt.AdvtStatus.ACTIVE;
-import static com.hz.pet.bexchange.domain.Advt.AdvtStatus.DONE;
 import static com.hz.pet.bexchange.domain.Advt.AdvtType.BUY;
 import static com.hz.pet.bexchange.domain.Advt.AdvtType.SELL;
 import static com.hz.pet.bexchange.domain.Advt.Currency.values;
@@ -72,7 +71,7 @@ public class DemoCreator {
                 .forEach(user -> {
 
                     Advt advt = new Advt();
-                    advt.setAdvtStatus(random.nextBoolean() ? ACTIVE : DONE);
+                    advt.setAdvtStatus(AdvtStatus.values()[3]);
                     advt.setAdvtType(random.nextBoolean() ? SELL : BUY);
                     advt.setCreationTime(new Date());
                     advt.setCurrency(values()[random.nextInt(4)]);
