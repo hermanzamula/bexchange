@@ -29,12 +29,12 @@ public class BexchangeUserDetailsService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("Cannot find user: " + username)));
     }
 
-    public static class BexchangeUserDetails extends User {
+    private static class BexchangeUserDetails extends User {
 
         private static final SimpleGrantedAuthority USER_ROLE = new SimpleGrantedAuthority("ROLE_USER");
         private static final SimpleGrantedAuthority USER_ADMIN = new SimpleGrantedAuthority("ROLE_ADMIN");
 
-        public BexchangeUserDetails(com.hz.pet.bexchange.domain.user.User user) {
+        BexchangeUserDetails(com.hz.pet.bexchange.domain.user.User user) {
             super(user.getPhoneNumber(), user.getPassword(), user.isAdmin() ? of(USER_ROLE, USER_ADMIN) : of(USER_ROLE));
         }
 

@@ -1,7 +1,6 @@
 package com.hz.pet.bexchange;
 
 import com.hz.pet.bexchange.web.BexchangeUserDetailsService;
-import com.hz.pet.bexchange.web.RESTAuthenticationEntryPoint;
 import com.hz.pet.bexchange.web.RESTAuthenticationErrorHandler;
 import com.hz.pet.bexchange.web.RESTAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 
 /**
  * @author Herman Zamula
@@ -29,14 +29,14 @@ public class ApplicationConfiguration extends WebSecurityConfigurerAdapter {
     private RESTAuthenticationSuccessHandler authenticationSuccessHandler;
     @Autowired
     private RESTAuthenticationErrorHandler authenticationErrorHandler;
-    @Autowired
-    private RESTAuthenticationEntryPoint authenticationEntryPoint;
+
+    private BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
         http
-                .httpBasic().and()
+                .httpBasic().realmName("Bexhange Realm").and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/advts/**").hasRole("USER")
                 .antMatchers(HttpMethod.PUT, "/advts/**").hasRole("USER")
@@ -57,11 +57,12 @@ public class ApplicationConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationErrorHandler)
-                .and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                //.and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
                 .and().formLogin()
-                .defaultSuccessUrl("/")
-                .and().logout();
+                .and().logout()
+                //.and().sessionManagement().sessionCreationPolicy(STATELESS)
         ;
+
     }
 
     @Override
