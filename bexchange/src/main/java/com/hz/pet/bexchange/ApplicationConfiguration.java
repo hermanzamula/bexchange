@@ -36,7 +36,7 @@ public class ApplicationConfiguration extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
 
         http
-                .httpBasic().realmName("Bexhange Realm").and()
+                .httpBasic().realmName("Bexhange").and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/advts/**").hasRole("USER")
                 .antMatchers(HttpMethod.PUT, "/advts/**").hasRole("USER")
