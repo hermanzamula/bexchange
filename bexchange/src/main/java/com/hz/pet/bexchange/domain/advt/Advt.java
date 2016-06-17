@@ -2,6 +2,7 @@ package com.hz.pet.bexchange.domain.advt;
 
 import com.hz.pet.bexchange.domain.user.User;
 import lombok.Data;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.hateoas.Identifiable;
 
 import javax.persistence.*;
@@ -50,6 +51,12 @@ public class Advt implements com.hz.pet.bexchange.domain.Advt, Identifiable<Long
     @Column(nullable = false)
     @Enumerated(STRING)
     private AdvtStatus advtStatus;
+
+    @Version
+    private long version;
+
+    @LastModifiedDate
+    private Date lastModified;
 
     @Override
     public User getCreator() {

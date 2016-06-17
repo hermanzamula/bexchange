@@ -1,13 +1,13 @@
 package com.hz.pet.bexchange.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.hateoas.Identifiable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Pattern;
+import java.util.Date;
 
 /**
  * @author Herman Zamula
@@ -25,9 +25,16 @@ public class User implements com.hz.pet.bexchange.domain.User, Identifiable<Long
     @GeneratedValue
     private Long id;
 
+    @JsonIgnore
     private String password;
 
     private boolean admin;
+
+    @Version
+    private long version;
+
+    @LastModifiedDate
+    private Date lastModified;
 
     @Override
     public String getPhoneNumber() {
