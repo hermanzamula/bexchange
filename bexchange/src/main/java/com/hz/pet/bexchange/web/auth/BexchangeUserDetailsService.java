@@ -1,4 +1,4 @@
-package com.hz.pet.bexchange.web;
+package com.hz.pet.bexchange.web.auth;
 
 import com.hz.pet.bexchange.domain.user.UserRepository;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

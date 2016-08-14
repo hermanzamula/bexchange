@@ -1,8 +1,8 @@
 package com.hz.pet.bexchange;
 
-import com.hz.pet.bexchange.web.BexchangeUserDetailsService;
-import com.hz.pet.bexchange.web.RESTAuthenticationErrorHandler;
-import com.hz.pet.bexchange.web.RESTAuthenticationSuccessHandler;
+import com.hz.pet.bexchange.web.auth.BexchangeUserDetailsService;
+import com.hz.pet.bexchange.web.auth.RESTAuthenticationErrorHandler;
+import com.hz.pet.bexchange.web.auth.RESTAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -57,9 +57,12 @@ public class ApplicationConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .successHandler(authenticationSuccessHandler)
                 .failureHandler(authenticationErrorHandler)
+
                 //.and().exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+
                 .and().formLogin()
                 .and().logout()
+
                 //.and().sessionManagement().sessionCreationPolicy(STATELESS)
         ;
 

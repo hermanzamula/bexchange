@@ -1,4 +1,4 @@
-package com.hz.pet.bexchange.web;
+package com.hz.pet.bexchange.web.auth;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
